@@ -5,98 +5,167 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Отдел логистики — Пример-Кабель</title>
 <meta name="description" content="Отдел логистики компании «Пример-Кабель», завод оптического кабеля: чем занимаемся и как подать заявку.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f6f8fb; --card: #ffffff; --text: #16202c; --muted: #5a6878;
-    --accent: #0a6cbd; --accent-soft: #e3f0fb; --line: #dfe5ec;
+    --bg: #eef0f2;
+    --paper: #f8f9fa;
+    --ink: #111418;
+    --muted: #59616b;
+    --rule: #c5cad1;
+    --rule-strong: #111418;
+    --head-bg: #15191e;
+    --head-ink: #e9ecef;
+    --head-muted: #8c96a1;
+    --grid: rgba(233, 236, 239, .06);
+    --signal: #e5602a;
+    --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0f151c; --card: #17202a; --text: #e7edf3; --muted: #9aa8b6;
-      --accent: #4aa8f0; --accent-soft: #15324a; --line: #26323f;
+      --bg: #0d1013; --paper: #14181d; --ink: #e3e7eb; --muted: #8f99a4;
+      --rule: #2a3139; --rule-strong: #e3e7eb; --head-bg: #090b0d;
     }
   }
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 17px/1.55 var(--sans);
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+
+  .label {
+    font: 500 12px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  }
+
+  /* ── Шапка: техническая сетка ── */
   header {
-    background: linear-gradient(135deg, #0a4f8a, #0a6cbd 60%, #14a0c8);
-    color: #fff; padding: 40px 0 36px;
+    background-color: var(--head-bg); color: var(--head-ink);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    border-bottom: 4px solid var(--signal);
   }
-  .company { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; opacity: .85; margin: 0 0 8px; }
-  h1 { font-size: clamp(26px, 6vw, 38px); line-height: 1.2; margin: 0 0 10px; }
-  .lead { margin: 0; opacity: .92; }
-  main { padding: 28px 0 40px; }
-  section { margin-bottom: 32px; }
-  h2 { font-size: 22px; margin: 0 0 14px; }
-  .cards { display: grid; gap: 12px; }
-  @media (min-width: 640px) { .cards { grid-template-columns: repeat(3, 1fr); } }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px;
+  .bar {
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding: 16px 0; border-bottom: 1px solid rgba(233, 236, 239, .14);
+    color: var(--head-muted);
   }
-  .card h3 { font-size: 17px; margin: 0 0 6px; }
-  .card p { margin: 0; color: var(--muted); font-size: 15px; }
-  .icon {
-    width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft);
-    color: var(--accent); display: grid; place-items: center; font-weight: 700; margin-bottom: 10px;
+  .bar b { color: var(--head-ink); font-weight: 500; }
+  .hero { padding: 48px 0 44px; display: grid; gap: 28px; align-items: center; }
+  @media (min-width: 720px) { .hero { grid-template-columns: 1fr 180px; padding: 72px 0 64px; } }
+  .hero .label { color: var(--signal); margin: 0 0 14px; }
+  h1 {
+    font: 600 clamp(34px, 8vw, 56px)/1.05 var(--sans); letter-spacing: -.02em; margin: 0 0 18px;
   }
-  ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-  ol.steps li {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 16px 16px 16px 64px; position: relative;
+  .lead { margin: 0; max-width: 34em; color: #c3c9d0; font-size: 18px; }
+  .xsec { width: 120px; height: 120px; color: var(--head-ink); opacity: .9; }
+  @media (min-width: 720px) { .xsec { width: 180px; height: 180px; justify-self: end; } }
+
+  /* ── Разделы ── */
+  main { padding: 8px 0 56px; }
+  section { padding-top: 48px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 14px;
+    border-bottom: 2px solid var(--rule-strong); padding-bottom: 10px; margin-bottom: 0;
   }
-  ol.steps li::before {
-    content: attr(data-n); position: absolute; left: 16px; top: 16px;
-    width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff;
-    display: grid; place-items: center; font-weight: 700;
+  .sec-head .label { color: var(--signal); }
+  h2 { font: 600 22px/1.25 var(--sans); margin: 0; letter-spacing: -.01em; }
+
+  /* Направления: таблица-спецификация */
+  .spec { display: grid; border-left: 1px solid var(--rule); }
+  @media (min-width: 720px) { .spec { grid-template-columns: repeat(3, 1fr); } }
+  .spec article {
+    background: var(--paper); padding: 22px 20px 24px;
+    border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
   }
-  ol.steps strong { display: block; margin-bottom: 2px; }
-  ol.steps span { color: var(--muted); font-size: 15px; }
-  .contact {
-    background: var(--accent-soft); border-radius: 14px; padding: 20px; text-align: center;
+  .spec .label { color: var(--muted); display: block; margin-bottom: 18px; }
+  .spec h3 { font: 600 18px/1.3 var(--sans); margin: 0 0 8px; }
+  .spec p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+  /* Порядок подачи заявки */
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .steps li {
+    counter-increment: s; display: grid; grid-template-columns: 56px 1fr; gap: 0 16px;
+    padding: 20px 0; border-bottom: 1px solid var(--rule); position: relative;
   }
-  .contact p { margin: 0 0 12px; }
-  .btn {
-    display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-    padding: 12px 22px; border-radius: 10px; font-weight: 600; word-break: break-all;
+  .steps li::before {
+    content: "0" counter(s); font: 500 26px/1 var(--mono); color: var(--ink);
+    grid-row: span 2; padding-top: 2px;
   }
-  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 18px 0 28px; }
+  .steps li:not(:last-child)::after {
+    content: ""; position: absolute; left: 14px; top: 56px; bottom: -6px;
+    border-left: 1px dashed var(--rule);
+  }
+  .steps strong { font-weight: 600; font-size: 18px; }
+  .steps span { color: var(--muted); font-size: 15.5px; }
+
+  footer { border-top: 1px solid var(--rule); padding: 20px 0 32px; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <p class="company">«Пример-Кабель» · завод оптического кабеля</p>
-    <h1>Отдел логистики</h1>
-    <p class="lead">Доставляем сырьё на завод и готовый кабель — заказчикам.</p>
+    <div class="bar label">
+      <span><b>Пример-Кабель</b> · завод оптического кабеля</span>
+      <span>Подразделение · Логистика</span>
+    </div>
+    <div class="hero">
+      <div>
+        <p class="label">Внутренняя страница отдела</p>
+        <h1>Отдел логистики</h1>
+        <p class="lead">Доставляем сырьё на завод и готовый кабель — заказчикам.</p>
+      </div>
+      <!-- Условное сечение оптического кабеля -->
+      <svg class="xsec" viewBox="0 0 120 120" fill="none" stroke="currentColor" aria-hidden="true">
+        <circle cx="60" cy="60" r="56" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" stroke-width="1" stroke-dasharray="2 3"/>
+        <circle cx="60" cy="60" r="8" stroke-width="1.5"/>
+        <g stroke-width="1.2">
+          <circle cx="60" cy="30" r="9"/><circle cx="86" cy="45" r="9"/><circle cx="86" cy="75" r="9"/>
+          <circle cx="60" cy="90" r="9"/><circle cx="34" cy="75" r="9"/><circle cx="34" cy="45" r="9"/>
+        </g>
+        <g fill="#e5602a" stroke="none">
+          <circle cx="60" cy="30" r="2.2"/><circle cx="86" cy="45" r="2.2"/><circle cx="86" cy="75" r="2.2"/>
+          <circle cx="60" cy="90" r="2.2"/><circle cx="34" cy="75" r="2.2"/><circle cx="34" cy="45" r="2.2"/>
+        </g>
+      </svg>
+    </div>
   </div>
 </header>
 
 <main class="wrap">
   <section>
-    <h2>Чем занимаемся</h2>
-    <div class="cards">
-      <div class="card"><div class="icon">1</div><h3>Снабжение сырьём</h3><p>Организуем доставку сырья и материалов на производство в нужные сроки.</p></div>
-      <div class="card"><div class="icon">2</div><h3>Доставка продукции</h3><p>Отгружаем и доставляем готовый кабель на барабанах заказчикам и на объекты.</p></div>
-      <div class="card"><div class="icon">3</div><h3>Склад и документы</h3><p>Ведём приёмку, хранение и отгрузку, оформляем транспортные документы.</p></div>
+    <div class="sec-head"><span class="label">§ 1</span><h2>Чем занимаемся</h2></div>
+    <div class="spec">
+      <article><span class="label">01 / Снабжение</span><h3>Снабжение сырьём</h3><p>Организуем доставку сырья и материалов на производство в нужные сроки.</p></article>
+      <article><span class="label">02 / Отгрузка</span><h3>Доставка продукции</h3><p>Отгружаем и доставляем готовый кабель на барабанах заказчикам и на объекты.</p></article>
+      <article><span class="label">03 / Склад</span><h3>Склад и документы</h3><p>Ведём приёмку, хранение и отгрузку, оформляем транспортные документы.</p></article>
     </div>
   </section>
 
   <section>
-    <h2>Как подать нам заявку</h2>
+    <div class="sec-head"><span class="label">§ 2</span><h2>Как подать нам заявку</h2></div>
     <ol class="steps">
-      <li data-n="1"><strong>Опишите задачу</strong><span>Что нужно сделать, к какому сроку и для какого подразделения.</span></li>
-      <li data-n="2"><strong>Передайте заявку в отдел логистики</strong><span>Приложите нужные документы и пометьте обращение словом «Заявка».</span></li>
-      <li data-n="3"><strong>Дождитесь ответа</strong><span>Мы подтвердим получение и сообщим, кто и когда возьмёт заявку в работу.</span></li>
+      <li><strong>Опишите задачу</strong><span>Что нужно сделать, к какому сроку и для какого подразделения.</span></li>
+      <li><strong>Передайте заявку в отдел логистики</strong><span>Приложите нужные документы и пометьте обращение словом «Заявка».</span></li>
+      <li><strong>Дождитесь ответа</strong><span>Мы подтвердим получение и сообщим, кто и когда возьмёт заявку в работу.</span></li>
     </ol>
   </section>
 </main>
 
 <footer>
-  <div class="wrap">© «Пример-Кабель». Внутренняя страница отдела.</div>
+  <div class="wrap label">
+    <span>© «Пример-Кабель»</span>
+    <span>Внутренняя страница отдела</span>
+  </div>
 </footer>
 </body>
 </html>
