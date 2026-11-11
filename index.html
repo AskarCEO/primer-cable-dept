@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отдел логистики — Пример-Кабель</title>
+<meta name="description" content="Отдел логистики компании «Пример-Кабель», завод оптического кабеля: чем занимаемся и как подать заявку.">
+<style>
+  :root {
+    --bg: #f6f8fb; --card: #ffffff; --text: #16202c; --muted: #5a6878;
+    --accent: #0a6cbd; --accent-soft: #e3f0fb; --line: #dfe5ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f151c; --card: #17202a; --text: #e7edf3; --muted: #9aa8b6;
+      --accent: #4aa8f0; --accent-soft: #15324a; --line: #26323f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header {
+    background: linear-gradient(135deg, #0a4f8a, #0a6cbd 60%, #14a0c8);
+    color: #fff; padding: 40px 0 36px;
+  }
+  .company { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; opacity: .85; margin: 0 0 8px; }
+  h1 { font-size: clamp(26px, 6vw, 38px); line-height: 1.2; margin: 0 0 10px; }
+  .lead { margin: 0; opacity: .92; }
+  main { padding: 28px 0 40px; }
+  section { margin-bottom: 32px; }
+  h2 { font-size: 22px; margin: 0 0 14px; }
+  .cards { display: grid; gap: 12px; }
+  @media (min-width: 640px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px;
+  }
+  .card h3 { font-size: 17px; margin: 0 0 6px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .icon {
+    width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft);
+    color: var(--accent); display: grid; place-items: center; font-weight: 700; margin-bottom: 10px;
+  }
+  ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ol.steps li {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 16px 16px 64px; position: relative;
+  }
+  ol.steps li::before {
+    content: attr(data-n); position: absolute; left: 16px; top: 16px;
+    width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  ol.steps strong { display: block; margin-bottom: 2px; }
+  ol.steps span { color: var(--muted); font-size: 15px; }
+  .contact {
+    background: var(--accent-soft); border-radius: 14px; padding: 20px; text-align: center;
+  }
+  .contact p { margin: 0 0 12px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+    padding: 12px 22px; border-radius: 10px; font-weight: 600; word-break: break-all;
+  }
+  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 18px 0 28px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="company">«Пример-Кабель» · завод оптического кабеля</p>
+    <h1>Отдел логистики</h1>
+    <p class="lead">Доставляем сырьё на завод и готовый кабель — заказчикам.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>Чем занимаемся</h2>
+    <div class="cards">
+      <div class="card"><div class="icon">1</div><h3>Снабжение сырьём</h3><p>Организуем доставку сырья и материалов на производство в нужные сроки.</p></div>
+      <div class="card"><div class="icon">2</div><h3>Доставка продукции</h3><p>Отгружаем и доставляем готовый кабель на барабанах заказчикам и на объекты.</p></div>
+      <div class="card"><div class="icon">3</div><h3>Склад и документы</h3><p>Ведём приёмку, хранение и отгрузку, оформляем транспортные документы.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Как подать нам заявку</h2>
+    <ol class="steps">
+      <li data-n="1"><strong>Опишите задачу</strong><span>Что нужно сделать, к какому сроку и для какого подразделения.</span></li>
+      <li data-n="2"><strong>Передайте заявку в отдел логистики</strong><span>Приложите нужные документы и пометьте обращение словом «Заявка».</span></li>
+      <li data-n="3"><strong>Дождитесь ответа</strong><span>Мы подтвердим получение и сообщим, кто и когда возьмёт заявку в работу.</span></li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© «Пример-Кабель». Внутренняя страница отдела.</div>
+</footer>
+</body>
+</html>
